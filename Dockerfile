@@ -24,4 +24,5 @@ COPY . .
 EXPOSE 8000
 
 # Start the app (Railway sets $PORT). Default to 8000 if not set.
-CMD ["sh", "-c", "uvicorn app.main:app --host=0.0.0.0 --port=${PORT:-8000}"]
+# Use python -m uvicorn to avoid PATH issues
+CMD ["sh", "-c", "python -m uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000} --log-level info --timeout-keep-alive 75"]
