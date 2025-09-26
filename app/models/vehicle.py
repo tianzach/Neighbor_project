@@ -2,7 +2,7 @@
 Vehicle model definition
 """
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field
 from typing import List
 
 
@@ -12,14 +12,6 @@ class Vehicle(BaseModel):
     """
     length: int = Field(..., ge=1, le=100, description="Length of the vehicle in feet")
     quantity: int = Field(..., ge=1, le=5, description="Number of vehicles of this type")
-    
-    @field_validator('length')
-    @classmethod
-    def length_must_be_multiple_of_10(cls, v: int) -> int:
-        """Validate that length is a multiple of 10"""
-        if v % 10 != 0:
-            raise ValueError('Length must be a multiple of 10')
-        return v
     
     @property
     def width(self) -> int:
