@@ -143,7 +143,24 @@ The test suite includes:
 
 ## 🚀 Deployment
 
-### Heroku Deployment
+### Railway Deployment (Recommended)
+
+Railway offers free deployment without credit card requirements.
+
+1. **Create Railway Account**
+   - Visit [Railway.app](https://railway.app)
+   - Sign up with GitHub
+
+2. **Deploy from GitHub**
+   - Click "Deploy from GitHub repo"
+   - Select your repository
+   - Click "Deploy Now"
+
+3. **Get Your URL**
+   - Railway provides a public URL
+   - Example: `https://your-project.railway.app`
+
+### Heroku Deployment (Alternative)
 
 1. Install Heroku CLI
 2. Create a Heroku app:
@@ -171,14 +188,30 @@ No environment variables are required for basic operation.
 
 ### Example 1: Single Vehicle
 ```bash
+# Local development
 curl -X POST "http://localhost:8000/search" \
+  -H "Content-Type: application/json" \
+  -d '[{"length": 10, "quantity": 1}]'
+
+# Railway deployment
+curl -X POST "https://your-project.railway.app/search" \
   -H "Content-Type: application/json" \
   -d '[{"length": 10, "quantity": 1}]'
 ```
 
 ### Example 2: Multiple Vehicles
 ```bash
+# Local development
 curl -X POST "http://localhost:8000/search" \
+  -H "Content-Type: application/json" \
+  -d '[
+    {"length": 10, "quantity": 1},
+    {"length": 20, "quantity": 2},
+    {"length": 25, "quantity": 1}
+  ]'
+
+# Railway deployment
+curl -X POST "https://your-project.railway.app/search" \
   -H "Content-Type: application/json" \
   -d '[
     {"length": 10, "quantity": 1},
